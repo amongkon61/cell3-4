@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>It's over 9000</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        input, select, button {
+            font-size: 18px;
+        }
+
+        button {
+            cursor: pointer;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="number" id="leftOperand" placeholder="Enter number" min="0">
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type="number" id="rightOperand" placeholder="Enter number" min="0">
+        <button id="calculateBtn">Try me!</button>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#calculateBtn").click(function () {
+                let leftOperand = $("#leftOperand").val();
+                let rightOperand = $("#rightOperand").val();
+                let operator = $("#operator").val();
+
+                if (leftOperand === "" || rightOperand === "" || leftOperand < 0 || rightOperand < 0) {
+                    alert("Error :(");
+                    return;
+                }
+
+                let leftNum = parseInt(leftOperand);
+                let rightNum = parseInt(rightOperand);
+                let result;
+
+                if ((operator === "/" || operator === "%") && rightNum === 0) {
+                    alert("It's over 9000!");
+                    console.log("It's over 9000!");
+                    return;
+                }
+
+                switch (operator) {
+                    case "+":
+                        result = leftNum + rightNum;
+                        break;
+                    case "-":
+                        result = leftNum - rightNum;
+                        break;
+                    case "*":
+                        result = leftNum * rightNum;
+                        break;
+                    case "/":
+                        result = leftNum / rightNum;
+                        break;
+                    case "%":
+                        result = leftNum % rightNum;
+                        break;
+                    default:
+                        alert("Error :(");
+                        return;
+                }
+
+                alert("Result: " + result);
+                console.log("Result:", result);
+            });
+
+            setInterval(function () {
+                alert("Please, use me...");
+            }, 30000);
+        });
+    </script>
+</body>
+</html>
